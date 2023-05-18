@@ -1,0 +1,83 @@
+{% extends 'base3.html' %}
+
+{% block 'titulo' %} Buscar livro {% endblock %} 
+
+{% block 'conteudo' %}
+
+<div class = "container">
+    <br>
+    {% if status == '0'%}
+        <div class="alert alert-success" role="alert">
+            Busca do livro realizado com sucesso
+        </div>
+    {% endif %}
+
+    {% if status == '1'%}
+        <div class="alert alert-danger" role="alert">
+            O campo deve estar preenchidos
+        </div>
+    {% endif %}
+
+    {% if status == '2'%}
+    <div class="alert alert-danger" role="alert">
+        O campo deve conter no mín. 2 caracteres
+    </div>
+    {% endif %}
+
+    {% if status == '3'%}
+    <div class="alert alert-danger" role="alert">
+        Erro interno do sistema
+    </div>
+    {% endif %}
+
+    {% if status == '4'%}
+    <div class="alert alert-danger" role="alert">
+        Livro não cadastrado
+    </div>
+    {% endif %}
+
+    <html lang = "en">  
+    <head>  
+    <title>Busca</title>  
+        
+    <meta name = "viewport" content = "width = device-width, initial-scale=1">  
+    <link rel = "stylesheet" href  = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
+    </head>  
+    <body>  
+    <div class = "container">  
+    <h2 align = "center"> Busque um exemplar</h2>    
+    </div>  
+    
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
+    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    </body>  
+    </html>
+
+ 
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+        
+        </div>
+
+        <div class="col-md">
+        <hr>
+
+        <form method="POST" action="{% url 'valida_busca' %}">{% csrf_token %}
+            <label> Digite o título da obra, autor ou editora</label>
+            <input name="editora_titulo_autor" class="form-control" type="text" placeholder="Título....">
+            <br>
+            <input class="btn btn-info btn-lg" type="submit" value="Buscar">
+
+        </div>
+
+        <div class="col-md-3">
+        
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

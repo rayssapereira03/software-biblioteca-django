@@ -1,0 +1,50 @@
+{% extends 'base3.html' %}
+
+{% block 'titulo' %} Login {% endblock %}
+
+{% block 'conteudo' %}
+
+<div class = "container">
+    <br>
+    {% if status == '1'%}
+        <div class="alert alert-danger" role="alert">
+            Email ou senha inválidos
+        </div>
+    {% endif %} 
+
+    {% if status == '2'%}
+        <div class="alert alert-danger" role="alert">
+            Bibliotecário faça o login antes de tentar acessar o sistema
+        </div>
+    {% endif %} 
+    <div class="row">
+
+        <div class="col-md-3">
+        
+        </div>
+
+        <div class="col-md">
+            <h4>Login do bibliotecário</h4>
+            <hr>
+
+            <form method="POST" action="{% url 'valida_loginB' %}">{% csrf_token %}
+
+                <label>Email</label>
+                <input name="email" class="form-control" type="email" placeholder="Email....">
+                <br>
+                <label>Senha</label>
+                <input name="senha" class="form-control" type="password" placeholder="Senha....">
+                <br>
+                <input class="btn btn-info btn-lg" type="submit" value="Entrar">
+                <a href="{% url 'cadastroB' %}" class = "btn btn-warning btn-lg">Cadastro</a>
+            </form>
+        </div>
+
+        <div class="col-md-3">
+        
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    {% block 'head' %} {% endblock %}
+    <title>{% block 'titulo' %} {% endblock %}</title>
+  </head>
+  <body>
+    <!-- As a link -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="{%url 'home_empre'%}">IVRP CODES</a>
+</nav>
+
+    {% block 'conteudo' %} 
+
+
+    {% endblock %}
+
+
+
+</html>

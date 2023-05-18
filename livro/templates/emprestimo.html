@@ -1,0 +1,106 @@
+{% extends 'base3.html' %}
+
+{% block 'titulo' %} Empréstimo {% endblock %} 
+
+{% block 'conteudo' %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {% for user in usuario %}
+        <strong>Olá {{user.nome}}!</strong> Realize aqui seu empréstimo
+    {%endfor%}
+  </div>
+
+
+<div class = "container">
+    <br>
+    {% if status == '0'%}
+        <div class="alert alert-success" role="alert">
+            Emprestimo realizado com sucesso
+        </div>
+    {% endif %}
+
+    {% if status == '1'%}
+        <div class="alert alert-danger" role="alert">
+            Todos os campos devem estar preenchidos
+        </div>
+    {% endif %}
+
+    {% if status == '2'%}
+        <div class="alert alert-danger" role="alert">
+            Esse livro já está emprestado
+        </div>
+    {% endif %}
+
+    {% if status == '3'%}
+    <div class="alert alert-danger" role="alert">
+        Quantidade de caracteres inválidas no campo cpf
+    </div>
+    {% endif %}
+
+    {% if status == '4'%}
+        <div class="alert alert-danger" role="alert">
+            No campo código do leitor e cpf do funcionário não deve conter letras
+        </div>
+    {% endif %}
+
+    {% if status == '5'%}
+    <div class="alert alert-danger" role="alert">
+        Cpf ou código do leitor não existem
+    </div>
+    {% endif %}
+
+
+    {% if status == '6'%}
+    <div class="alert alert-danger" role="alert">
+        Esse usuário já atingou o máximo de empréstimos
+    </div>
+    {% endif %}
+
+    {% if status == '7'%}
+    <div class="alert alert-danger" role="alert">
+        Erro interno do sistema
+    </div>
+    {% endif %}
+
+    {% if status == '8'%}
+    <div class="alert alert-danger" role="alert">
+        O código do leitor que você informou não corresponde com esse usuário
+    </div>
+    {% endif %}
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-3">
+        
+        </div>
+
+        <div class="col-md"  id="emprestimos">
+        <h4>Realize o empréstimo </h4>
+        <hr>
+
+        <form method="POST" action="{% url 'valida_emprestimo' %}">{% csrf_token %}
+            <label>CPF do funcionário</label>
+            <input name="cpf_biblio" class="form-control" type="text" placeholder="CPF....">
+            <br>
+            <label>Código do leitor</label>
+            <input name="cod_leitor" class="form-control" type="text" placeholder="Código....">
+            <br>
+            <label>Código do livro</label>
+            <input name="cod_livro" class="form-control" type="text" placeholder="Código....">
+            <br>
+     
+            <input class="btn btn-success" type="submit" value="Emprestar">
+        </div>
+
+        <div class="col-md-3">
+        
+        </div>
+
+    </div>
+</div> 
+
+
+{% endblock %}
